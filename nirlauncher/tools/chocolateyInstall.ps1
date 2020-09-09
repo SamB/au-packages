@@ -13,11 +13,7 @@ $packageArgs = @{
 Get-ChocolateyUnzip @packageArgs
 rm $toolsDir\*.zip -ea 0
 
-if ($is64) {
-    Write-Host '64 bit architecture - overwriting x32 apps with x64 versions'
-    mv $install_path\Nirsoft\x64\* $install_path\Nirsoft -force
-    rm $install_path\Nirsoft\x64 -ea 0
-}
+# NirLauncher already runs the 64-bit versions of tools when possible, no need to overwrite anything.
 Install-ChocolateyPath $install_path\Nirsoft "Machine"
 
 $launcher_path = "$install_path\$packageName.exe"
